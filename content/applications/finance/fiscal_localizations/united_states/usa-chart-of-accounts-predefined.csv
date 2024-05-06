@@ -1,0 +1,50 @@
+ID,Name,Reconcile,Code,Account Type,Default?
+`account.1_current_assets`,Current Assets,FALSE,101000,Current Assets,
+`account.1_pos_receivable`,Account Receivable (PoS),TRUE,101300,Receivable,
+`account.1_bank_journal_default_account_41`,Bank,FALSE,101401,Bank and Cash,
+`account.1_account_journal_suspense_account_id`,Bank Suspense Account,FALSE,101402,Current Assets,Yes
+`account.1_account_journal_payment_debit_account_id`,Outstanding Receipts,TRUE,101403,Current Assets,Yes
+`account.1_account_journal_payment_credit_account_id`,Outstanding Payments,TRUE,101404,Current Assets,Yes
+`account.1_cash_journal_default_account_42`,Cash,FALSE,101501,Bank and Cash,
+`account.1_cash_journal_default_account_428`,Cash Restaurant,FALSE,101502,Bank and Cash,
+`account.1_cash_journal_default_account_2685`,Petty Cash,FALSE,101503,Bank and Cash,
+`account.1_transfer_account_id`,Liquidity Transfer,TRUE,101701,Current Assets,Yes
+`account.1_stock_valuation`,Stock Valuation,FALSE,110100,Current Assets,Yes
+`account.1_stock_in`,Stock Interim (Received),TRUE,110200,Current Assets,Yes
+`account.1_stock_out`,Stock Interim (Delivered),TRUE,110300,Current Assets,Yes
+`account.1_cost_of_production`,Cost of Production,TRUE,110400,Current Assets,Yes
+`account.1_receivable`,Account Receivable,TRUE,121000,Receivable,
+`account.1_to_receive_rec`,Products to receive,TRUE,121100,Current Assets,
+`account.1_tax_paid`,Tax Paid,FALSE,131000,Current Assets,
+`account.1_tax_receivable`,Tax Receivable,FALSE,132000,Current Assets,
+`account.1_prepayments`,Prepayments,FALSE,141000,Prepayments,
+`account.1_fixed_assets`,Fixed Asset,FALSE,151000,Fixed Assets,
+`account.1_non_current_assets`,Non-current assets,FALSE,191000,Non-current Assets,
+`account.1_current_liabilities`,Current Liabilities,FALSE,201000,Current Liabilities,
+`account.1_payable`,Account Payable,TRUE,211000,Payable,
+`account.1_to_receive_pay`,Bills to receive,TRUE,211100,Current Liabilities,
+`account.1_salary_payable`,Salary Payable,TRUE,230000,Current Liabilities,
+`account.1_employee_payroll_taxes`,Employee Payroll Taxes,TRUE,230100,Current Liabilities,
+`account.1_employer_payroll_taxes`,Employer Payroll Taxes,TRUE,230200,Current Liabilities,
+`account.1_tax_received`,Tax Received,FALSE,251000,Current Liabilities,
+`account.1_tax_payable`,Tax Payable,FALSE,252000,Current Liabilities,
+`account.1_non_current_liabilities`,Non-current Liabilities,FALSE,291000,Non-current Liabilities,
+`account.1_capital`,Capital,FALSE,301000,Equity,
+`account.1_dividends`,Dividends,FALSE,302000,Equity,
+`account.1_income`,Product Sales,FALSE,400000,Income,
+`account.1_income_currency_exchange`,Foreign Exchange Gain,FALSE,441000,Income,Yes
+`account.1_cash_diff_income`,Cash Difference Gain,FALSE,442000,Income,Yes
+`account.1_cash_discount_loss`,Cash Discount Loss,FALSE,443000,Expenses,Yes
+`account.1_other_income`,Other Income,FALSE,450000,Other Income,
+`account.1_cost_of_goods_sold`,Cost of Goods Sold,FALSE,500000,Cost of Revenue,
+`account.1_expense`,Expenses,FALSE,600000,Expenses,
+`account.1_expense_invest`,Purchase of Equipments,FALSE,611000,Expenses,
+`account.1_expense_rent`,Rent,FALSE,612000,Expenses,
+`account.1_expense_finance`,Bank Fees,FALSE,620000,Expenses,
+`account.1_expense_salary`,Salary Expenses,FALSE,630000,Expenses,
+`account.1_expense_currency_exchange`,Foreign Exchange Loss,FALSE,641000,Expenses,Yes
+`account.1_cash_diff_expense`,Cash Difference Loss,FALSE,642000,Expenses,Yes
+`account.1_cash_discount_gain`,Cash Discount Gain,FALSE,643000,Income,Yes
+`account.1_expense_rd`,RD Expenses,FALSE,961000,Expenses,
+`account.1_expense_sales`,Sales Expenses,FALSE,962000,Expenses,
+`account.1_unaffected_earnings_account`,Undistributed Profits/Losses,FALSE,999999,Current Year Earnings,Yes
