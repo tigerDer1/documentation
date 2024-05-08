@@ -14,3 +14,4 @@ Events
    events/sell_tickets
    events/track_manage_talks
    events/event_templates
+   events/event_tracks
