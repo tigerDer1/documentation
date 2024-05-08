@@ -16,9 +16,9 @@ Are you eager to learn about the server framework of Odoo? Perhaps you have rece
 a technical role. Either way, this tutorial will level you up as an Odoo developer and show you the
 ropes of working with the server framework.
 
-We will take you on a step-by-step journey, building a real estate asset management module as you
-explore the core concepts of the server framework. Each chapter of the tutorial builds upon the
-previous one, so make sure to follow them in order.
+This tutorial will take you on a step-by-step journey, building a real estate asset management
+module as you explore the core concepts of the server framework. Each chapter of the tutorial builds
+upon the previous one, so make sure to follow them in order.
 
 .. important::
    Before going further, make sure you have prepared your development environment with the
