@@ -34,6 +34,34 @@ Those two files are the minimum requirements for a directory to be considered as
 .. seealso::
    `The manifest of the Sales app <{GITHUB_PATH}/addons/sale/__manifest__.py>`_
 
+Create the first model
+======================
+
+Now that our module is recognized by Odoo, it's time to build towards the business features. Data is
+essential for any real-world application, and our real estate module won't be an exception.
+
+To store data effectively, we need two things: a way to define the structure of that data, and a
+system to store and manipulate it. Fortunately, the server framework of Odoo comes equipped with the
+perfect tool: the :abbr:`ORM (Object Relational Mapper)` layer.
+
+The ORM simplifies data access and manipulation by allowing you to define **models**. Models act as
+blueprints for your data; they define the structure and organization of information within your
+module. You can see them as templates that specify what kind of data your module will handle. For
+example, real estate properties, owners, or tenants.
+
+Each model is made of smaller components called **fields**. You can see them as the individual
+characteristics that describe your data. Fields allow you to define the relevant data your
+application needs to capture and manage. In the case of real estate properties, some example fields
+could be: the property name, the type (house, apartment, etc.), the floor area...
+
+In Odoo, models are represented by Python classes that inherit from the `models.Model` class
+provided by the ORM. Within these model classes, fields are defined as class attributes. Fields come
+in a variety of types like `String`, `Float`, `Boolean`, and more.
+
+.. todo: add example with a fake product model
+.. todo: add exercise to create the real.estate.property model
+.. todo: show the impact on SQL: table, columns
+
 ----
 
-All good? If yes, then let's :doc:`create our first model <03_basicmodel>`!
+.. todo: add incentive to move to the next chapter
