@@ -15,8 +15,8 @@ specifically, it uses a three-tier architecture (image from Wikipedia):
     :align: center
     :alt: Overview of a three-tier application
 
-Its presentation tier is a combination of HTML5, JavaScript, and CSS. The logic tier is exclusively
-written in Python, while the data tier only supports PostgreSQL as an :abbr:`RDBMS
+The presentation tier of Odoo is a combination of HTML5, JavaScript, and CSS. The logic tier is
+exclusively written in Python, while the data tier only supports PostgreSQL as an :abbr:`RDBMS
 (Relational Database Management System Software)`.
 
 Depending on the scope of your module, Odoo development can be done in any of these tiers.
