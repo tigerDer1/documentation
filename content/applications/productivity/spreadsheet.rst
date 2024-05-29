@@ -11,6 +11,7 @@ Spreadsheet
    spreadsheet/insert
    spreadsheet/functions
    spreadsheet/templates
+   spreadsheet/filters
 
 Spreadsheet lets you organize, analyze, and visualize your data in tabular form. Among others, you
 can:
@@ -19,7 +20,7 @@ can:
 - :doc:`Use formulas and functions <spreadsheet/functions>`.
 - :doc:`Use default templates or create new ones <spreadsheet/templates>`.
 - Format data.
-- Sort and filter data.
+- Sort and :doc:`filter <spreadsheet/filters>` data.
 
 .. _spreadsheet/glossary:
 
