@@ -7,7 +7,8 @@ marketing campaigns, analyze the source of leads, and use filters and groups to 
 data in each report.
 
 Navigate to the reports
-=================================
+=======================
+
 To access the lead data needed to create marketing attribution reports:
 
 1. Go to the :guilabel:`Leads Analysis` page by navigating to
