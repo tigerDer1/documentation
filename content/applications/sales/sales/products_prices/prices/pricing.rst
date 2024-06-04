@@ -332,7 +332,7 @@ checkbox, then click :guilabel:`Save`.
    :align: center
    :alt: Click the checkbox labeled `Discounts` to activate Discounts.
 
-To set a discount after discounts have been activated, navigate to the list of sales orders by
+After the setting has been activated, navigate to the desired quotation or sales order by
 going to :menuselection:`Orders --> Orders` at the top of the page. Once there, click on the
 desired sales order from the list.
 
