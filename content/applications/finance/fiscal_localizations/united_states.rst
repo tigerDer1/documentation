@@ -9,6 +9,8 @@ United States
 .. |AR| replace:: :abbr:`AR (Accounts Receivable)`
 .. |AP| replace:: :abbr:`AP (Accounts Payable)`
 .. |CFS| replace:: :abbr:`CFS (Cash Flow Statement)`
+.. |NACHA| replace:: :abbr:`NACHA (National Automated Clearing House Association)`
+.. |ACH| replace:: :abbr:`ACH (Automated Clearing House)`
 
 The Odoo fiscal localization package for the United States follows the Generally Acceptable
 Accounting Principles (GAAP) accounting standards and rules used to prepare financial statements,
@@ -31,7 +33,7 @@ workflows, and provide in-depth looks at some specific use cases, as well.
 Configuration
 =============
 
-Below are the available modules in Odoo for accounting use in the United States.
+Below are the available optional modules in Odoo for accounting use in the United States.
 
 .. note::
    The modules listed below are either for reference only or are optional, as the core requirements
@@ -45,12 +47,12 @@ Below are the available modules in Odoo for accounting use in the United States.
 
    .. image:: united_states/us-l10n-generic-chart-template.png
       :align: center
-      :alt: The Generic Chart Template comes pre-configured for the US localization
+      :alt: The Generic Chart Template comes pre-configured for the US localization.
 
 Modules installation
 --------------------
 
-:ref:`Install <general/install>` the following modules to get all the features of the USA
+:ref:`Install <general/install>` the following modules to get all the features of the United States
 localization:
 
 .. list-table::
@@ -60,7 +62,26 @@ localization:
    * - Name
      - Technical name
      - Description
-   * - :guilabel:`United States - Payroll`
+   * - :guilabel:`United States - Accounting`
+     - `l10n_us`
+     - (optional) Serves as a dependency for other United States accounting modules.
+   * - :ref:`1099 Reporting <l10n_us/1099-form>`
+     - `l10n_us_1099`
+     - (optional) Export 1099 data for e-filing with a 3rd party.
+   * - :guilabel:`US Checks Layout`
+     - `l10n_us_check_printing`
+     - (optional) Enables the printing of payments on pre-printed check paper. Supports the three
+       most common check formats and will work out of the box with the linked checks from
+       `checkdepot.net <https://checkdepot.net/collections/computer-checks/Odoo>`_.
+
+       - `Check on top: Quicken / QuickBooks standard
+         <https://checkdepot.net/collections/computer-checks/Top-Check>`_
+       - `Check on middle: Peachtree standard
+         <https://checkdepot.net/collections/computer-checks/middle-check>`_
+       - `Check on bottom: ADP standard
+         <https://checkdepot.net/collections/computer-checks/Bottom-Check>`_
+
+   * - :ref:`United States - Payroll <l10n_us/payroll>`
      - `l10n_us_hr_payroll`
      - *Automatically installed with the Payroll application*. Includes the necessary rules for
        United States payroll, including:
@@ -73,16 +94,24 @@ localization:
        - Employee Payslip
        - Integration with Leaves Management
 
-   * - :guilabel:`United States - Payroll with Accounting`
+   * - :ref:`United States - Payroll with Accounting <l10n_us/payroll>`
      - `l10n_us_hr_payroll_account`
      - *Automatically installed with the Payroll and Accounting applications*. Contains the
        necessary accounting data for the United States payroll rules.
-   * - :guilabel:`United States - Payroll - Export to ADP`
+   * - :ref:`United States - Payroll - Export to ADP <l10n_us/adp>`
      - `l10n_us_hr_payroll_adp`
      - (optional) Export Work Entries to the ADP payroll software.
-   * - :guilabel:`Avatax`
+   * - :ref:`NACHA Payments <l10n_us/nacha>`
+     - `l10n_us_payment_nacha`
+     - (optional) Export payments as NACHA files for use in the United States.
+   * - :ref:`US - Accounting Reports <l10n_us/reports>`
+     - `l10n_us_reports`
+     - (optional) Adds United States accounting reports.
+   * - :ref:`Avatax <l10n_us/taxes-avatax>`
      - `account_avatax`
-     - (optional) Module for the :doc:`Avatax integration <../accounting/taxes/avatax>` with Odoo.
+     - (optional) Module for the :doc:`AvaTax integration <../accounting/taxes/avatax>` with Odoo.
+
+.. _l10n_us/coa:
 
 Chart of accounts
 =================
@@ -150,7 +179,9 @@ and then click the :icon:`fa-caret-down` :guilabel:`(caret down)` icon to access
 there, select :guilabel:`Account Type` under the :guilabel:`Group By` column heading to list all of
 the account types in the table.
 
-.. screenshot of accounts here
+.. image:: united_states/coa-account-types.png
+   :align: center
+   :alt: Chart of Accounts grouped by Account Type.
 
 Besides structure, there are other key differences in the chart of accounts in the United States,
 compared to other countries:
@@ -172,10 +203,48 @@ These differences, ultimately, should be reflected in the |COA| structure itself
 of new accounts, as needed, in order to meet the demands of US accounting reporting requirements.
 
 .. seealso::
-   :ref:`Create a new account <chart-of-account/create>`
+   - :ref:`Create a new account <chart-of-account/create>`
+   - :doc:`../../essentials/search`
+
+.. _l10n_us/taxes:
 
 Taxes
 =====
+
+In the United States, tax rates and what is taxed vary by jurisdiction. Default *Sales* and
+*Purchase* taxes are created automatically when the Odoo *Accounting* application is installed. To
+manage existing or configure additional taxes, navigate to :menuselection:`Accounting -->
+Configuration --> Taxes`.
+
+.. _l10n_us/taxes-avatax:
+
+AvaTax
+------
+
+Avalara *AvaTax* is a cloud-based tax calculation and compliance software that integrates with Odoo
+for the United States and Canadian accounting localizations. Integrating *AvaTax* with Odoo provides
+real-time and region-specific tax calculations when users sell, purchase, and invoice items in Odoo.
+*AvaTax* tax calculation is supported with every United Nations charted country, including
+inter-border transactions.
+
+.. important::
+   *AvaTax* is only available for integration with databases/companies that have locations in the
+   United States and Canada. This means the fiscal position/country of a database can only be set to
+   the United States or Canada. Reference this documentation: :ref:`avatax/fiscal_country`.
+
+Refer to the documentation articles below to integrate and configure an AvaTax account with an Odoo
+database.
+
+.. seealso::
+   - :doc:`AvaTax integration <../accounting/taxes/avatax>`
+   - :doc:`Avalara management portal <../accounting/taxes/avatax/avalara_portal>`
+   - :doc:`Calculate taxes with AvaTax <../accounting/taxes/avatax/avatax_use>`
+   - `US Tax Compliance: Avatax elearning video
+     <https://www.odoo.com/slides/slide/us-tax-compliance-avatax-2858?fullscreen=1>`_
+   - Avalara's support documents: `About AvaTax
+     <https://community.avalara.com/support/s/document-item?language=en_US&bundleId=dqa1657870670369_dqa1657870670369&topicId=About_AvaTax.html&_LANG=enus>`_
+
+.. _l10n_us/reports:
 
 Reports
 =======
@@ -196,9 +265,9 @@ The following report selections are readily available for the US localization, u
   schedule tax payments, or request refunds for the overpayment of taxes. In Odoo, the tax report
   can be made monthly, every two months, quarterly, every 4 months, semi-annually, and annually.
 
-.. _finance/l10n/us-report-filters:
+.. _l10n_us/report-filters:
 
-Depending on the type of report, certain filters will be available at the top of the dashboard:
+Depending on the type of report, certain filters are available at the top of the dashboard:
 
 - a *date* filter, indicated by a :icon:`fa-calendar` :guilabel:`(calendar)` icon that precedes a
   date in *MM/DD/YYYY* format. Use this to select a specific date or date range for the report.
@@ -228,13 +297,13 @@ Depending on the type of report, certain filters will be available at the top of
   this filter to customize the current report's sections and line items, or build new reports, as
   desired.
 
-Cash Flow Statement
+Cash flow statement
 -------------------
 
-Navigate to the :guilabel:`Cash Flow Statement` dashboard by going to :menuselection:`Accounting app
---> Reporting --> Statement Reports: Cash Flow Statement`. From here, |CFS| reports can be generated
-using the various :ref:`filters <finance/l10n/us-report-filters>` that are available at the top of
-the dashboard.
+Navigate to the *Cash Flow Statement* (CFS) dashboard by going to :menuselection:`Accounting app -->
+Reporting --> Statement Reports: Cash Flow Statement`. From here, |CFS| reports can be generated
+using the various :ref:`filters <l10n_us/report-filters>` that are available at the top of the
+dashboard.
 
 Odoo uses the *direct* cash flow method to compile cash flow statements, which measures actual cash
 inflows and outflows from the company's operations, such as when cash is received from customers or
@@ -242,12 +311,12 @@ when cash payments are made to suppliers.
 
 By default, an account labeled with any of the three default :guilabel:`Tags` on the
 :guilabel:`Chart of Accounts` dashboard will be included in the report, which includes:
-:guilabel:`Operating Activities`, :guilabel:`Financing Activities`, and :guilabel:`Investing \&
+:guilabel:`Operating Activities`, :guilabel:`Financing Activities`, and :guilabel:`Investing &
 Extraordinary Activities`.
 
-   .. image:: united_states/us-l10n-cash-flow-statement-tags.png
-      :align: center
-      :alt: Examples of tagged accounts that are included in the Cash Flow Statement in Odoo
+.. image:: united_states/us-l10n-cash-flow-statement-tags.png
+   :align: center
+   :alt: Examples of tagged accounts that are included in the Cash Flow Statement in Odoo.
 
 Additionally, the cash flow statement in Odoo:
 
@@ -256,50 +325,37 @@ Additionally, the cash flow statement in Odoo:
   journal entries, while excluding |AR| and |AP| activity.
 
 .. example::
-    Create a vendor bill for $100, as an operating expense (not |AP|). Doing so will **not** reflect
-    a transaction on the cash flow statement. However, register a corresponding payment for $100,
-    and the transaction **will** reflect on the cash flow statement as :guilabel:`Cash paid for
-    operating activities`.
+   Create a vendor bill for $100, as an operating expense (not |AP|). Doing so will **not** reflect
+   a transaction on the cash flow statement. However, register a corresponding payment for $100,
+   and the transaction **will** reflect on the cash flow statement as :guilabel:`Cash paid for
+   operating activities`.
 
-    .. image:: united_states/us-l10n-operating-expenses-example.png
-       :align: center
-       :alt: Example of a bill registered as an operating expense as part of a cash flow statement.
+   .. image:: united_states/us-l10n-operating-expenses-example.png
+      :align: center
+      :alt: Example of a bill registered as an operating expense as part of a cash flow statement.
+
+.. _l10n_us/1099-form:
 
 1099 form
 =========
 
-AvaTax
-======
-
-Avalara *AvaTax* is a cloud-based tax calculation and compliance software that integrates with Odoo
-for the United States and Canadian accounting localizations. Integrating *AvaTax* with Odoo provides
-real-time and region-specific tax calculations when users sell, purchase, and invoice items in Odoo.
-*AvaTax* tax calculation is supported with every United Nations charted country, including
-inter-border transactions.
-
-.. important::
-   *AvaTax* is only available for integration with databases/companies that have locations in the
-   United States and Canada. This means the fiscal position/country of a database can only be set to
-   the United States or Canada. Reference this documentation: :ref:`avatax/fiscal_country`.
-
-Refer to the documentation articles below to integrate and configure an AvaTax account with an Odoo
-database.
-
-.. seealso::
-   - :doc:`AvaTax integration <../accounting/taxes/avatax>`
-   - :doc:`Avalara management portal <../accounting/taxes/avatax/avalara_portal>`
-   - :doc:`Calculate taxes with AvaTax <../accounting/taxes/avatax/avatax_use>`
-   - `US Tax Compliance: Avatax elearning video
-     <https://www.odoo.com/slides/slide/us-tax-compliance-avatax-2858?fullscreen=1>`_
-   - Avalara's support documents: `About AvaTax
-     <https://community.avalara.com/support/s/document-item?language=en_US&bundleId=dqa1657870670369_dqa1657870670369&topicId=About_AvaTax.html&_LANG=enus>`_
+.. _l10n_us/cash-discount:
 
 Cash discount
 =============
 
+Cash discounts can be configured from :menuselection:`Accounting app --> Payment Terms`. Each
+payment term can be set up with a cash discount and reduced tax.
+
+.. seealso::
+   :doc:`../accounting/customer_invoices/cash_discounts`
+
+.. _l10n_us/writing-checks:
+
 Writing checks
 ==============
 
+.. _l10n_us/payroll:
 
 Payroll
 =======
@@ -315,10 +371,10 @@ relevant data, so the data can be uploaded into the payroll provider, who then i
 paychecks or directly deposits the funds into an employee's bank account.
 
 In order to export the payroll data, the work entries must first be validated and correct. Refer to
-the :doc:`work entries </applications/hr/payroll/work_entries>` documentation for more information
+the :doc:`work entries <../../hr/payroll/work_entries>` documentation for more information
 regarding validating work entries.
 
-Once work entries are validated, the information can be :ref:`exported to ADP <finance/l10n/adp>`.
+Once work entries are validated, the information can be :ref:`exported to ADP <l10n_us/adp>`.
 
 After payments have been issued to employees, payslips can be processed into batches, validated, and
 posted to the corresponding accounting journals to keep all financial records in Odoo current.
@@ -337,29 +393,35 @@ It is important to have the *Employees* application installed, and all employee 
 populated. In each employee record, there is various information the *Payroll* application requires
 to properly process payslips, including various banking, tax, and work information.
 
-The sections of the employee form that directly affect *Payroll* are:
+Navigate to the :menuselection:`Employees app` and select an employee record to view the sections of
+the employee form that directly affect *Payroll*:
 
 - :guilabel:`Work Information` tab:
-       - :guilabel:`Work Address`: indicates where the employee is located, including the state,
-         which affects the tax calculations.
-       - :guilabel:`Working Hours`: determines how pay is calculated, and determines if an employee
-         earns overtime.
-- :guilabel:`Private Information` tab:
-       - :guilabel:`SSN No`: the last four digits of the employee's Social Security Number (SSN)
-         appears on payslips.
-       - :guilabel:`Bank Account Number`: the bank account associated with the NACHA payment file.
-- :guilabel:`HR Settings` tab:
-       - :guilabel:`Federal Tax Filing Status`: the tax status an employee uses for Payroll tax
-         calculations, which can be different from their state status.
-       - :guilabel:`State Tax Filing Status`: the tax status an employee uses for their state
-         portion of the Payroll tax calculation.
-       - :guilabel:`W-2 Form`: a US tax form indicating the summary of wages, taxes, and benefits
-         paid to an employee during a tax period (typically one year).
-       - :guilabel:`W-4 Form`: an IRS form that helps outline the amount of federal taxes to
-         withhold for an employee, which is paid to the IRS by the company.
 
-For more information regarding the employee form and these specific entries, refer to the
-:doc:`employees </applications/hr/employees/new_employee>` documentation.
+  - :guilabel:`Work Address`: indicates where the employee is located, including the state, which
+    affects the tax calculations.
+  - :guilabel:`Working Hours`: determines how pay is calculated, and determines if an employee earns
+    overtime.
+
+- :guilabel:`Private Information` tab:
+
+  - :guilabel:`SSN No`: the last four digits of the employee's Social Security Number (SSN) appears
+    on payslips.
+  - :guilabel:`Bank Account Number`: the bank account associated with the NACHA payment file.
+
+- :guilabel:`HR Settings` tab:
+
+  - :guilabel:`Federal Tax Filing Status`: the tax status an employee uses for Payroll tax
+    calculations, which can be different from their state status.
+  - :guilabel:`State Tax Filing Status`: the tax status an employee uses for their state portion of
+    the Payroll tax calculation.
+  - :guilabel:`W-2 Form`: a US tax form indicating the summary of wages, taxes, and benefits paid to
+    an employee during a tax period (typically one year).
+  - :guilabel:`W-4 Form`: an IRS form that helps outline the amount of federal taxes to withhold for
+    an employee, which is paid to the IRS by the company.
+
+.. seealso::
+   :doc:`Employees documentation <../../hr/employees/new_employee>`
 
 Contracts
 ~~~~~~~~~
@@ -367,32 +429,35 @@ Contracts
 Additionally, there is information that is found in an employee contract that also affects the
 *Payroll* application.
 
-The sections of a contract that directly affect *Payroll* are:
+Navigate to the :menuselection:`Employees app --> Employees --> Contracts` and select a contract
+record to view the sections of a contract that directly affect *Payroll*:
 
 - :guilabel:`General Information`:
-       - :guilabel:`Salary Structure Type: United States: Employee`: defines when the employee is
-         paid, their working schedule, and the work entry type.
-       - :guilabel:`Work Entry source`: determines how work entries are calculated.
-- :guilabel:`Salary Information` tab:
-       - :guilabel:`SSN No`: the last four digits of the employee's Social Security Number (SSN)
-         appears on payslips.
-       - :guilabel:`Wage type`: determines how the employee is paid, wether a Fixed wage (salary) or
-         Hourly wage.
-       - :guilabel:`Schedule Pay`: defines how often the employee is paid, either
-         :guilabel:`Annually`, :guilabel:`Semi-annually`, :guilabel:`Quarterly`,
-         :guilabel:`Bi-monthly`, :guilabel:`Monthly`, :guilabel:`Semi-monthly`,
-         :guilabel:`Bi-weekly`, :guilabel:`Weekly`, or :guilabel:`Daily`. In the US, Semi-monthly
-         (24 payments a year) or bi-weekly (26 payments a year) are the most common.
-       - :guilabel:`Wage, Yearly, and Monthly cost`: used to show the total cost of an employee. It
-         is recommended to populate the :guilabel:`Yearly` wage first, as it auto-populates the
-         other fields.
-       - :guilabel:`Pre-tax benefits`: populate this section according to the employee's selections.
-         Pre-tax benefits decrease the gross wage, which lowers the base amount that is taxed. These
-         are displayed at the beginning of the payslip.
-       - :guilabel:`Post-tax benefits`: these benefit are deductions made *after* taxes are
-         calculated. These appear towards the end of the payslip before the net amount is displayed.
 
-.. _finance/l10n/adp:
+  - :guilabel:`Salary Structure Type: United States: Employee`: defines when the employee is paid,
+    their working schedule, and the work entry type.
+  - :guilabel:`Work Entry source`: determines how work entries are calculated.
+
+- :guilabel:`Salary Information` tab:
+
+  - :guilabel:`SSN No`: the last four digits of the employee's Social Security Number (SSN) appears
+    on payslips.
+  - :guilabel:`Wage type`: determines how the employee is paid, wether a Fixed wage (salary) or
+    Hourly wage.
+  - :guilabel:`Schedule Pay`: defines how often the employee is paid, either :guilabel:`Annually`,
+    :guilabel:`Semi-annually`, :guilabel:`Quarterly`, :guilabel:`Bi-monthly`, :guilabel:`Monthly`,
+    :guilabel:`Semi-monthly`, :guilabel:`Bi-weekly`, :guilabel:`Weekly`, or :guilabel:`Daily`. In
+    the US, Semi-monthly (24 payments a year) or bi-weekly (26 payments a year) are the most common.
+  - :guilabel:`Wage, Yearly, and Monthly cost`: used to show the total cost of an employee. It is
+    recommended to populate the :guilabel:`Yearly` wage first, as it auto-populates the other
+    fields.
+  - :guilabel:`Pre-tax benefits`: populate this section according to the employee's selections.
+    Pre-tax benefits decrease the gross wage, which lowers the base amount that is taxed. These are
+    displayed at the beginning of the payslip.
+  - :guilabel:`Post-tax benefits`: these benefit are deductions made *after* taxes are calculated.
+    These appear towards the end of the payslip before the net amount is displayed.
+
+.. _l10n_us/adp:
 
 ADP
 ---
@@ -403,38 +468,32 @@ Requirements
 In order to create a report that can be uploaded to ADP, there are some configurations that must be
 done.
 
-#. Ensure the :guilabel:`United States - Payroll - Export to ADP` module is installed.
+First, ensure the *United States - Payroll - Export to ADP* module is :ref:`installed
+<general/install>`.
 
-   Navigate to the *Apps* application, and remove the :guilabel:`Apps` filter in the search bar.
-   Type in :guilabel:`ADP` in the search bar, and the :guilabel:`United States - Payroll - Export to
-   ADP` module appears.
+Then, the company **must** have an *ADP Code* entered for the company settings. To do so, navigate
+to :menuselection:`Payroll app --> Configuration --> Settings`. Enter the :guilabel:`ADP Code` in
+the :guilabel:`US Localization` section.
 
-   Click the :guilabel:`Activate` button to install the module. When  installation is complete, the
-   database reloads and returns to the main Odoo dashboard.
+Next, work entry types **must** have the correct ADP code listed in the *External Code* field for
+each work entry type that is being referenced.
 
-#. The company **must** have an :guilabel:`ADP Code` entered for the company settings. To do so,
-   navigate to :menuselection:`Payroll app --> Configuration --> Settings`. Enter the :guilabel:`ADP
-   Code` in the :guilabel:`US Localization` section.
+Lastly, every employee **must** have an *ADP Code* entered on their employee form. To do so,
+navigate to :menuselection:`Employees app`, select an employee record, and open the :guilabel:`HR
+Settings` tab. Enter the :guilabel:`ADP Code` in the :guilabel:`ADP Information` section.
 
-#. Each :guilabel:`Work Entry Type` **must** have the correct ADP code listed in the
-   :guilabel:`External Code` field for each work entry type that is being referenced.
+The :guilabel:`ADP Code` code is how ADP identifies that particular employee, and is typically a
+six-digit number.
 
-   For more information on how to configure or modify a work entry type, refer to the :ref:`work
-   entry <payroll/new-work-entry>` documentation.
-
-#. Every employee **must** have an :guilabel:`ADP Code` entered on their employee form. This field
-   is located in the :guilabel:`HR Settings` tab, in the :guilabel:`ADP Information` section of the
-   employee card.
-
-   This code is how ADP identifies that particular employee, and is typically a six-digit number.
-   For more information on the employee form, refer to the :doc:`new employees
-   </applications/hr/employees/new_employee>` documentation.
+.. seealso::
+   - :ref:`payroll/new-work-entry`
+   - :doc:`../../hr/employees/new_employee`
 
 Export data
 ~~~~~~~~~~~
 
-Once :doc:`work entries </applications/hr/payroll/work_entries>` have been verified, the information
-can be exported into a CSV file, which can then be uploaded into ADP.
+Once :doc:`work entries <../../hr/payroll/work_entries>` have been verified, the information can be
+exported into a CSV file, which can then be uploaded into ADP.
 
 To export the data, navigate to :menuselection:`Payroll app --> Reporting --> United States: ADP
 Export`, then click :guilabel:`New`. Next, enter the :guilabel:`Start Date` and :guilabel:`End Date`
@@ -450,9 +509,9 @@ descriptive, but distinct from the :guilabel:`Batch Name`.
 Ensure the correct company populates the :guilabel:`Company` field. Change the selected company with
 the drop-down menu, if needed.
 
-Last, add the employee's work entry information to the list. Click :guilabel:`Add a line` and an
+Lastly, add the employee's work entry information to the list. Click :guilabel:`Add a line` and an
 :guilabel:`Add: Employee` pop-up window loads. The list can be :doc:`filtered
-</applications/essentials/search>` to more easily find the employees to add to the list.
+<../../essentials/search>` to more easily find the employees to add to the list.
 
 .. tip::
    It is helpful to process the data export in multiple groups instead of in one large group
@@ -465,20 +524,21 @@ and the employees appear in the list.
 
 To create the CSV file, click the :guilabel:`Generate` button in the top-left corner.
 
-ACH
-===
+.. _l10n_us/ach-electronic-transfers:
+
+ACH - electronic transfers
+==========================
 
 Automated Clearing House (ACH) payments are a modern way to transfer funds electronically between
-bank accounts, replacing traditional paper-based methods. :abbr:`ACH (Automated Clearing House)`
-payments are commonly used for direct deposits, bill payments, and business transactions, offering
-convenience and cost-effectiveness. With their widespread adoption, :abbr:`ACH (Automated Clearing
-House)` payments have become an integral part of managing finances securely and efficiently.
+bank accounts, replacing traditional paper-based methods. |ACH| payments are commonly used for
+direct deposits, bill payments, and business transactions, offering convenience and
+cost-effectiveness. With their widespread adoption, |ACH| payments have become an integral part of
+managing finances securely and efficiently.
 
 Payment provider integration
 ----------------------------
 
-:abbr:`ACH (Automated Clearing House)` payments are supported by *Authorize.net* and *Stripe*
-payment integrations in Odoo.
+|ACH| payments are supported by *Authorize.net* and *Stripe* payment integrations in Odoo.
 
 .. seealso::
    - :ref:`Setting up Authorize.net for ACH payments (Odoo) <authorize/ach_payments>`
@@ -487,13 +547,14 @@ payment integrations in Odoo.
    - :doc:`Setting up Stripe for ACH payments (Odoo) <../payment_providers/stripe>`
    - `Stripe's ACH Direct Debit documentation <https://docs.stripe.com/payments/ach-debit>`_
 
+.. _l10n_us/nacha:
+
 NACHA files
 -----------
 
-Odoo can generate a National Automated Clearing House Association NACHA) compatible :abbr:`ACH
-(Automated Clearing House)` file to send to a company's bank. For each individual *Bank* journal
-that the company wishes to pay vendors with, a :abbr:`NACHA (National Automated Clearing House
-Association)` configuration section needs to be filled out on the Odoo database.
+Odoo can generate a National Automated Clearing House Association (NACHA) compatible |ACH| file to
+send to a company's bank. For each individual *Bank* journal that the company wishes to pay vendors
+with, a |NACHA| configuration section needs to be filled out on the Odoo database.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -501,18 +562,16 @@ Configuration
 First, navigate to the :menuselection:`Accounting app --> Configuration --> Journals`. Open the
 bank journal and click into the :guilabel:`Outgoing Payments` tab.
 
-.. image:: united_states/nacha_settings.png
+.. image:: united_states/nacha-settings.png
    :align: center
    :alt: NACHA (National Automated Clearing House Association) configuration settings on Odoo.
 
 .. note::
-   The following :abbr:`NACHA (National Automated Clearing House Association)` configuration
-   information is normally provided by the company's financial institution once they have been
-   approved to send :abbr:`ACH (Automated Clearing House)` payments via their account.
+   The following |NACHA| configuration information is normally provided by the company's financial
+   institution once they have been approved to send payments via their account.
 
-Under the section labeled, :guilabel:`NACHAA configuration` are the fields required to generate a
-:abbr:`NACHA (National Automated Clearing House Association)` compatible :abbr:`ACH (Automated
-Clearing House)` file to send to a company's bank. First, enter the *routing number* of the
+Under the section labeled, :guilabel:`NACHA configuration` are the fields required to generate a
+|NACHA| compatible |ACH| file to send to a company's bank. First, enter the *routing number* of the
 financial institution in the field labeled, :guilabel:`Immediate Destination`. This information is
 widely available on the Internet and generally varies by bank location. This number is usually
 provided during the initial account setup.
@@ -527,38 +586,38 @@ provided by the financial institution.
 Next, the :guilabel:`Company Identification` number should be entered. This is a 10-digit number
 made up of the 9-digit company ID (Employer Identification Number (EIN)), with an additional number
 at the start of the sequence. This number is often a `1`. Check with the financial institution
-should this first number differ to verify that it is correct. This number is provided for :abbr:`ACH
-(Automated Clearing House)` approved accounts.
+should this first number differ to verify that it is correct. This number is provided for |ACH|
+approved accounts.
 
 The :guilabel:`Originating DFI Identification` number is next, this Depository Financial Institution
 (DFI) field contains an assigned 8-digit number. Consult the financial institution for this number.
 
 .. important::
    Enter the above numbers exactly as the company's financial institution (bank or credit union) has
-   provided them. Failing to do so, would be detrimental to the successful  :abbr:`NACHA (National
-   Automated Clearing House Association)` configuration.
+   provided them. Failing to do so, would be detrimental to the successful  |NACHA| configuration.
 
-.. image:: united_states/nacha_dropdown.png
+.. image:: united_states/nacha-dropdown.png
    :align: center
    :alt: NACHA settings with the standard entry class code drop-down menu highlighted.
 
 There are two options for the next field: :guilabel:`Standard Entry Class Code`. Select the
 drop-down menu to the right of the field and pick either :guilabel:`Corporate Credit or Debit (CCD)`
-or :guilabel:`Prearranged Payment and Deposit (PPD)`. Again, this information will be provided by the
-financial institution. By default :guilabel:`Corporate Credit or Debit (CCD)` is selected.
+or :guilabel:`Prearranged Payment and Deposit (PPD)`. Again, this information will be provided by
+the financial institution. By default :guilabel:`Corporate Credit or Debit (CCD)` is selected.
 
 Finally, the last option is for :guilabel:`Generated Balanced Files`. Tick the checkbox to the right
 of the field to enable :guilabel:`Generated Balanced Files`. Consult the company's accountant or
 financial advisor to make an informed decision for this field.
 
-Manually :icon:`fa-cloud-upload` :guilabel:`Save` the configuration or navigate away from this
-screen to auto-save. The configuration is now complete.
+Manually :icon:`fa-cloud-upload` :guilabel:`(cloud upload)` save the configuration or navigate away
+from this screen to auto-save. The configuration is now complete.
+
+.. _l10n_us/batch-payment:
 
 Create batch payment
 ~~~~~~~~~~~~~~~~~~~~
 
-Now, record each payment in Odoo using the :abbr:`NACHA (National Automated Clearing House
-Association)` payment method.
+Now, record each payment in Odoo using the |NACHA| payment method.
 
 .. seealso::
    :ref:`Register Payments in Odoo <payments/register>`
@@ -569,16 +628,14 @@ Association)` payment method.
    included in it match today's date. Consult the financial institution for the exact cut-off time
    for their processing of same-day payments.
 
-Once all the payments to be included in the :abbr:`NACHA (National Automated Clearing House
-Association)` :abbr:`ACH (Automated Clearing House)` file have been made, a batch payment needs to
-be made from the :icon:`fa-cog` :guilabel:`Action`  menu.
+Once all the payments to be included in the |NACHA| |ACH| file have been made, a batch payment needs
+to be made from the :icon:`fa-cog` :guilabel:`Action` menu.
 
 To create the batch payments, access the payments page, by navigating to :menuselection:`Accounting
---> Customers --> Payments`. Select all the payments that should be included in the :abbr:`NACHA
-(National Automated Clearing House Association)` :abbr:`ACH (Automated Clearing House)` file, by
-ticking the checkboxes to the far-left of the rows.
+--> Customers --> Payments`. Select all the payments that should be included in the |NACHA| |ACH|
+file, by ticking the checkboxes to the far-left of the rows.
 
-.. image:: united_states/create_batch_payments.png
+.. image:: united_states/create-batch-payments.png
    :align: center
    :alt: On the payments screen, the action menu is highlighted with create a batch payment
          selected.
@@ -591,13 +648,14 @@ the payment just created and then click into the :guilabel:`Exported File` tab. 
 is listed with the :guilabel:`Generation Date`. Click the :icon:`fa-download` :guilabel:`Download`
 button to download the file.
 
-.. image:: united_states/batch_file.png
+.. image:: united_states/batch-file.png
    :align: center
    :alt: The exported file tab highlighted in the batch payment with the download circled.
 
 If any adjustments need to be made, click the :guilabel:`Re-gererate Export File` button to recreate
-a new :abbr:`NACHA (National Automated Clearing House Association)` :abbr:`ACH (Automated Clearing
-House)` file.
+a new |NACHA| |ACH| file.
+
+.. _l10n_us/direct-debit:
 
 Direct debit
 ------------
