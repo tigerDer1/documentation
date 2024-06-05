@@ -337,7 +337,7 @@ going to :menuselection:`Orders --> Orders` at the top of the page. Once there, 
 desired sales order from the list.
 
 In the order lines section of the quotation form, a new column heading will appear labeled
-:guilabel:`Disc.%`. This column is used to set discounts on individual items. Enter the desired
+:guilabel:`Disc.%`. This column is used to set discounts on individual line items. Enter the desired
 discount for each product line and the new price will automatically be calculated in the sales order
 :guilabel:`Total` at the bottom of the page.
 
