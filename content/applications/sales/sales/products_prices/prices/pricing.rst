@@ -339,7 +339,7 @@ desired sales order from the list.
 In the :guilabel:`Order Lines` section of the sales order form, a new heading will appear labeled
 :guilabel:`Disc.%`. This column is used to set discounts on individual items. Enter the desired
 discount for each product line and the new price will automatically be calculated in the sales order
-total at the bottom of the page.
+:guilabel:`Total` at the bottom of the page.
 
 .. image:: pricing/discount-on-sales-order.png
    :align: center
